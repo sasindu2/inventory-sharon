@@ -27,16 +27,24 @@
         .navbar-brand {
             display: inline-flex;
             align-items: center;
+            width: 168px;
+            overflow: hidden;
         }
 
         .brand-logo {
+            width: 100%;
             height: 72px;
-            width: auto;
+            object-fit: cover;
+            object-position: center;
         }
 
         @media (max-width: 991.98px) {
+            .navbar-brand {
+                width: 190px;
+            }
+
             .brand-logo {
-                height: 64px;
+                height: 82px;
             }
         }
 
