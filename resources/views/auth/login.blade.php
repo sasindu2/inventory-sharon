@@ -41,13 +41,7 @@
         <div class="row justify-content-center align-items-center g-4">
             <div class="col-lg-5">
                 <div class="text-white login-intro">
-                    <div class="mb-4">
-                        <img
-                            src="{{ asset('logo/Bio%20motori%20v4.png') }}"
-                            alt="{{ config('app.name', 'Bio Motori') }}"
-                            class="brand-logo"
-                        >
-                    </div>
+                   
                     <h1 class="display-5 fw-bold mb-3">Gestisci scorte, posizioni di magazzino e visibilita dei prodotti da un unico posto.</h1>
                 </div>
             </div>

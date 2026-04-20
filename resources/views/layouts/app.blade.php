@@ -30,8 +30,14 @@
         }
 
         .brand-logo {
-            height: 48px;
+            height: 64px;
             width: auto;
+        }
+
+        @media (max-width: 991.98px) {
+            .brand-logo {
+                height: 56px;
+            }
         }
 
         .hero-card,
