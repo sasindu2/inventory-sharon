@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login | {{ config('app.name', 'Bio Motori') }}</title>
+    <title>Accesso | {{ config('app.name', 'Bio Motori') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -23,13 +23,24 @@
             max-width: min(280px, 100%);
             height: auto;
         }
+
+        @media (max-width: 991.98px) {
+            .login-intro {
+                text-align: center;
+            }
+
+            .brand-logo {
+                display: block;
+                margin-inline: auto;
+            }
+        }
     </style>
 </head>
 <body class="d-flex align-items-center">
     <div class="container">
         <div class="row justify-content-center align-items-center g-4">
             <div class="col-lg-5">
-                <div class="text-white">
+                <div class="text-white login-intro">
                     <div class="mb-4">
                         <img
                             src="{{ asset('logo/Bio%20motori%20v4.png') }}"
@@ -37,8 +48,7 @@
                             class="brand-logo"
                         >
                     </div>
-                    <h1 class="display-5 fw-bold mb-3">Control stock, warehouse locations, and product visibility from one place.</h1>
-                    <p class="lead text-white-50 mb-0">Demo accounts are seeded for both roles. Admins manage the full inventory lifecycle. Regular users browse live stock and locations.</p>
+                    <h1 class="display-5 fw-bold mb-3">Gestisci scorte, posizioni di magazzino e visibilita dei prodotti da un unico posto.</h1>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -52,7 +62,7 @@
                                 class="brand-logo"
                             >
                         </div>
-                        <h2 class="h3 mb-4">Sign in</h2>
+                        <h2 class="h3 mb-4">Accedi</h2>
                         <form method="POST" action="{{ route('login.store') }}" class="vstack gap-3">
                             @csrf
                             <div>
@@ -65,9 +75,9 @@
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="1" id="remember" name="remember">
-                                <label class="form-check-label" for="remember">Remember me</label>
+                                <label class="form-check-label" for="remember">Ricordami</label>
                             </div>
-                            <button class="btn btn-dark btn-lg w-100">Login</button>
+                            <button class="btn btn-dark btn-lg w-100">Accedi</button>
                         </form>
 
                         <hr class="my-4">
