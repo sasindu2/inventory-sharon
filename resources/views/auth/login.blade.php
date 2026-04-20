@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login | Sharon Inventory</title>
+    <title>Login | {{ config('app.name', 'Bio Motori') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -18,6 +18,11 @@
             border-radius: 1.25rem;
             box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.12);
         }
+
+        .brand-logo {
+            max-width: min(280px, 100%);
+            height: auto;
+        }
     </style>
 </head>
 <body class="d-flex align-items-center">
@@ -25,7 +30,13 @@
         <div class="row justify-content-center align-items-center g-4">
             <div class="col-lg-5">
                 <div class="text-white">
-                    <div class="text-uppercase fw-semibold mb-3">Inventory Management System</div>
+                    <div class="mb-4">
+                        <img
+                            src="{{ asset('logo/Bio%20motori%20v4.png') }}"
+                            alt="{{ config('app.name', 'Bio Motori') }}"
+                            class="brand-logo"
+                        >
+                    </div>
                     <h1 class="display-5 fw-bold mb-3">Control stock, warehouse locations, and product visibility from one place.</h1>
                     <p class="lead text-white-50 mb-0">Demo accounts are seeded for both roles. Admins manage the full inventory lifecycle. Regular users browse live stock and locations.</p>
                 </div>
@@ -34,6 +45,13 @@
                 <div class="card login-card">
                     <div class="card-body p-4 p-lg-5">
                         @include('partials.flash')
+                        <div class="text-center mb-4">
+                            <img
+                                src="{{ asset('logo/Bio%20motori%20v4.png') }}"
+                                alt="{{ config('app.name', 'Bio Motori') }}"
+                                class="brand-logo"
+                            >
+                        </div>
                         <h2 class="h3 mb-4">Sign in</h2>
                         <form method="POST" action="{{ route('login.store') }}" class="vstack gap-3">
                             @csrf
@@ -54,10 +72,7 @@
 
                         <hr class="my-4">
 
-                        <div class="small text-body-secondary">
-                            <div><strong>Admin:</strong> `admin@inventory.test` / `password`</div>
-                            <div><strong>User:</strong> `user@inventory.test` / `password`</div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

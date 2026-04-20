@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Inventory Management System')</title>
+    <title>@yield('title', config('app.name', 'Bio Motori'))</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
@@ -25,8 +25,13 @@
         }
 
         .navbar-brand {
-            font-weight: 700;
-            letter-spacing: 0.04em;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            height: 48px;
+            width: auto;
         }
 
         .hero-card,
@@ -92,7 +97,13 @@
     @auth
         <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
             <div class="container py-2">
-                <a class="navbar-brand text-uppercase" href="{{ route('dashboard') }}">Sharon Inventory</a>
+                <a class="navbar-brand" href="{{ route('dashboard') }}" aria-label="{{ config('app.name', 'Bio Motori') }}">
+                    <img
+                        src="{{ asset('logo/Bio%20motori%20v4.png') }}"
+                        alt="{{ config('app.name', 'Bio Motori') }}"
+                        class="brand-logo"
+                    >
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
