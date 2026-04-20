@@ -36,10 +36,33 @@ class InventoryDemoSeeder extends Seeder
             [
                 'name' => 'Warehouse Viewer',
                 'role_id' => $userRole->id,
-                'password' => Hash::make('password'),
+                'password' => Hash::make('biomotori'),
                 'email_verified_at' => now(),
             ]
         );
+
+        $hasExistingInventoryData = Category::query()->exists()
+            || WarehouseLocation::query()->exists()
+            || Product::query()->withTrashed()->exists();
+
+        if ($hasExistingInventoryData) {
+            ActivityLog::query()->updateOrCreate(
+                ['action' => 'seeded_demo_data'],
+                [
+                    'user_id' => $admin->id,
+                    'description' => 'Demo account credentials refreshed without reseeding inventory data.',
+                    'properties' => [
+                        'products' => Product::query()->withTrashed()->count(),
+                        'categories' => Category::query()->count(),
+                        'locations' => WarehouseLocation::query()->count(),
+                        'viewer_account' => $regularUser->email,
+                        'inventory_seed_skipped' => true,
+                    ],
+                ]
+            );
+
+            return;
+        }
 
         User::factory(4)->regular($userRole)->create();
 
@@ -113,16 +136,19 @@ class InventoryDemoSeeder extends Seeder
             'user_id' => $admin->id,
         ]);
 
-        ActivityLog::query()->create([
-            'user_id' => $admin->id,
-            'action' => 'seeded_demo_data',
-            'description' => 'Initial inventory demo data seeded.',
-            'properties' => [
-                'products' => Product::query()->count(),
-                'categories' => Category::query()->count(),
-                'locations' => WarehouseLocation::query()->count(),
-                'viewer_account' => $regularUser->email,
-            ],
-        ]);
+        ActivityLog::query()->updateOrCreate(
+            ['action' => 'seeded_demo_data'],
+            [
+                'user_id' => $admin->id,
+                'description' => 'Initial inventory demo data seeded.',
+                'properties' => [
+                    'products' => Product::query()->count(),
+                    'categories' => Category::query()->count(),
+                    'locations' => WarehouseLocation::query()->count(),
+                    'viewer_account' => $regularUser->email,
+                    'inventory_seed_skipped' => false,
+                ],
+            ]
+        );
     }
 }
